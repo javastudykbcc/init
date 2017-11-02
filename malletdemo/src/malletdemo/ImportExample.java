@@ -94,15 +94,21 @@ public class ImportExample {
 
         ImportExample importer = new ImportExample();
         InstanceList instances = importer.readDirectory(new File(args[0]));
+        System.out.print("C45 training begin----\n");
         C45Trainer trainer= new C45Trainer();
         C45 c45=trainer.train(instances);
+        System.out.print("C45 training end----\n");
+        System.out.print("NaiveBayes training begin----\n");
         NaiveBayesTrainer nbtrainer= new NaiveBayesTrainer();
         NaiveBayes nb=nbtrainer.train(instances);
         nb.printWords(10);
+        System.out.print("NaiveBayes training end----\n");
        // AdaBoostM2Trainer am2trainer=new AdaBoostM2Trainer(am2trainer);
         //AdaBoostM2 m2=am2trainer.train(instances);
+        System.out.print("DecisionTree training begin----\n");
         DecisionTreeTrainer dttrainer=new DecisionTreeTrainer();
         DecisionTree dt=dttrainer.train(instances);
+        System.out.print("DecisionTree training end----\n");
         instances.save(new File(args[1]));
 
     }
